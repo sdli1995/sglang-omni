@@ -396,6 +396,7 @@ class SpeechReference(BaseModel):
     media_type: str | None = None
     text: str | None = None
     vq_codes: list[list[int]] | list[int] | None = None
+    speaker_embedding: list[float] | None = None
 
 
 class CreateSpeechRequest(BaseModel):
@@ -620,6 +621,7 @@ class TranscriptionResponse(BaseModel):
 
     text: str
     usage: TranscriptionUsage | None = None
+    finish_reason: str | None = None
 
 
 class TranscriptionSegment(BaseModel):
@@ -640,6 +642,7 @@ class TranscriptionVerboseResponse(BaseModel):
     text: str
     segments: list[TranscriptionSegment] = Field(default_factory=list)
     usage: TranscriptionUsage | None = None
+    finish_reason: str | None = None
 
 
 class TranscriptionTextDeltaEvent(BaseModel):
@@ -655,6 +658,7 @@ class TranscriptionTextDoneEvent(BaseModel):
     type: str = "transcript.text.done"
     text: str
     usage: TranscriptionUsage | None = None
+    finish_reason: str | None = None
 
 
 class ModelPermission(BaseModel):
